@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function validatePassword() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm-password").value;
+
+            // Password pattern that requires at least one uppercase, one lowercase, one special character, and one digit
+            var passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            if (password !== confirmPassword) {
+                alert("Password and Confirm Password do not match");
+                return false;
+            } else if (!password.match(passwordPattern)) {
+                alert("Password must contain at least one uppercase, one lowercase, one special character, and one digit");
+                return false;
+            }
+            return true;
+        }
+        function displayConfirmationMessage() {
+            var confirmationMessage = document.getElementById("confirmation-message");
+            confirmationMessage.style.display = "block";
+            return true; // Allow form submission to proceed
+        }
+    </script>
+</head>
+<body>
+    <div class="main">
+        <h1>Registration Form</h1>
+        <form action="./resister" method="post" enctype="multipart/form-data" onsubmit="return validatePassword() && displayConfirmationMessage()">
+            <div class="input-box">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-box">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-box">
+                <label for="dateofbirth">Date-of-Birth</label>
+                <input type="date" id="dateofbirth" name="dateofbirth" required>
+            </div>
+            <div class="input-box">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-box">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <div class="input-box">
+                <label for="zone">Zone</label>
+                <select id="zone" name="zone" required>
+                    <option value="Zone 1">Zone 1</option>
+                    <option value="Zone 2">Zone 2</option>
+                    <option value="Zone 3">Zone 3</option>
+                    <option value="Zone 4"> Zone 4</option>
+                </select>
+                </div>
+                <div class="input-box">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" required>
+                </div>
+                <div class="input-box">
+                    <label for="proof">Valid Proof (Aadhar/Voter ID)</label>
+                    <input type="file" id="proof" name="proof" accept="image/*" required>
+                </div>
+            <button type="submit" class="button">Register</button>
+        </form>
+    </div>
+</body>
+</html>
